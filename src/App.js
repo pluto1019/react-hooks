@@ -1,4 +1,20 @@
-import { useInput } from './libs/jooks';
+import { useInput, useTabs } from './libs/jooks';
+
+const App = () => {
+  return (
+    <div className='App'>
+      <h1>Jooks example</h1>
+
+      <UseJooks title='useInput'>
+        <UseInput />
+      </UseJooks>
+
+      <UseJooks title='useTabs'>
+        <UseTabs />
+      </UseJooks>
+    </div>
+  );
+};
 
 const UseJooks = ({ title, children }) => {
   return (
@@ -15,15 +31,29 @@ const UseInput = () => {
   return <input placeholder='name' {...name} />;
 };
 
-const App = () => {
-  return (
-    <div className='App'>
-      <h1>Jooks example</h1>
+const UseTabs = () => {
+  const content = [
+    {
+      tab: 'Sec 1',
+      content: 'section 1 content',
+    },
+    {
+      tab: 'Sec 2',
+      content: 'section 2 content',
+    },
+  ];
 
-      <UseJooks title='useInput'>
-        <UseInput />
-      </UseJooks>
-    </div>
+  const { currentItem, changeItem } = useTabs(0, content);
+
+  return (
+    <>
+      {content.map((section, index) => (
+        <button key={section.tab} onClick={() => changeItem(index)}>
+          {section.tab}
+        </button>
+      ))}
+      <div>{currentItem.content}</div>
+    </>
   );
 };
 
