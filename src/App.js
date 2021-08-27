@@ -1,4 +1,4 @@
-import { useInput, useTabs, useTitle } from './libs/jooks';
+import { useInput, useTabs, useTitle, useClick } from './libs/jooks';
 
 const App = () => {
   const titleUpdater = useTitle('Loading...');
@@ -8,9 +8,12 @@ const App = () => {
     titleUpdater('home');
   }, 3000);
 
+  const sayHello = () => console.log('say hello');
+  const title = useClick(sayHello);
+
   return (
     <div className='App'>
-      <h1>Jooks example</h1>
+      <h1 ref={title}>Jooks example</h1>
 
       <UseJooks title='useInput'>
         <UseInput />
