@@ -4,15 +4,17 @@ export const useClick = (onClick) => {
   const element = useRef();
 
   useEffect(() => {
-    if (element.current) {
-      element.current.addEventListener('click', onClick);
+    const currentEle = element.current;
+
+    if (currentEle) {
+      currentEle.addEventListener('click', onClick);
     }
     return () => {
-      if (element.current) {
-        element.current.removeEventListener('click', onClick);
+      if (currentEle) {
+        currentEle.removeEventListener('click', onClick);
       }
     };
-  }, []);
+  }, [onClick]);
 
   return element;
 };
