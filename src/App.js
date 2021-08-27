@@ -1,6 +1,12 @@
-import { useInput, useTabs } from './libs/jooks';
+import { useInput, useTabs, useTitle } from './libs/jooks';
 
 const App = () => {
+  const titleUpdater = useTitle('Loading...');
+
+  setTimeout(() => {
+    titleUpdater('home');
+  }, 3000);
+
   return (
     <div className='App'>
       <h1>Jooks example</h1>
@@ -28,6 +34,7 @@ const UseJooks = ({ title, children }) => {
 const UseInput = () => {
   const maxLen = (value) => value.length <= 10;
   const name = useInput('Mr.', maxLen);
+
   return <input placeholder='name' {...name} />;
 };
 
