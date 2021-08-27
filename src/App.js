@@ -4,6 +4,7 @@ const App = () => {
   const titleUpdater = useTitle('Loading...');
 
   setTimeout(() => {
+    console.log('useTitle, change title');
     titleUpdater('home');
   }, 3000);
 
