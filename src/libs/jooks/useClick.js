@@ -16,5 +16,5 @@ export const useClick = (onClick) => {
     };
   }, [onClick]);
 
-  return element;
+  return typeof onClick === 'function' ? element : undefined;
 };
